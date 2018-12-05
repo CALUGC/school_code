@@ -1,31 +1,16 @@
-#include <string.h>
 #include <stdio.h>
- 
-int main () {
- char in[10000];
- gets(in);
- int len= strlen(in);
- int count=0;
- for (int i = len-1; i >= 0 ; --i)
- {
- 	if(in[i]==' ') {		
- 		for (int j = i+1; count > 0 ; count--,j++)
- 		{
- 			printf("%c",in[j] );
- 		}
- 		printf(" ");
- 		count=0;
- 	}
- 	else count++;
- 	
- 	if(i==0){
- 		for (int i = 0; ; ++i)
- 		{
- 			if(in[i]!=' '){
- 				printf("%c",in[i] );
- 				break;
- 			}
- 		}
- 	}
- }
+#include <string.h>
+#define  size 10000
+int main()
+{
+    char in[size];
+    fgets(in,sizeof(in),stdin);
+    char *ptr;
+    ptr=strtok(in," ()-"); //把空白()-全部篩掉
+    printf("%s ",ptr );
+    while(ptr!=NULL){
+        ptr=strtok(NULL," ()-");
+        if(ptr!=NULL)  printf("%s",ptr );
+    }
+    return 0;
 }
