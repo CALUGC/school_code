@@ -1,0 +1,48 @@
+#include <cstdio>
+#include <cstdlib>
+#include <algorithm>
+using namespace std;
+
+typedef struct 
+{
+	int x;
+	int y;
+}cont;
+
+int mysort(const void* left, const void * right){
+	const cont *pl=(const cont*) left;
+	const cont *pr=(const cont*) right;
+	if(pl->x!=pr->x)
+		return pl->x>pr->x;
+	else
+		return pl->y>pr->y;
+}
+
+
+
+int main(int argc, char const *argv[])
+{
+	int n,time=0;
+while(~scanf("%d",&n)){
+	if(time) printf("\n");
+	else time =1;
+	int max=-2147483648LL,max_adr=0;
+	cont* ptr=(cont*)calloc(n,sizeof(cont));
+	for (int i = 0; i < n; ++i)
+	{
+		scanf("%d %d",&ptr[i].x,&ptr[i].y);
+	}
+	qsort(ptr,n,sizeof(cont),mysort);
+	for (int i = 0; i < n; ++i)
+	{
+		printf("(%d,%d)\n",ptr[i].x,ptr[i].y);
+		if((ptr[n-i-1].x+ptr[n-i-1].y)>max){
+			max=(ptr[n-i-1].x+ptr[n-i-1].y);
+			max_adr=n-i-1;
+		}
+	}
+	printf("max num:%d\npoint:(%d,%d)\n",max,ptr[max_adr].x,ptr[max_adr].y );
+}
+
+	return 0;
+}
