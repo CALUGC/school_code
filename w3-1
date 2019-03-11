@@ -1,0 +1,74 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+class Animal
+{
+public:
+	Animal(int ch = 0, int p = 0, int c = 0): chicken(ch), pig(p), cow(c)
+	{};
+
+	void add(string name, int n)
+	{
+		if(name == "chicken")
+			chicken += n;
+		else if(name == "pig")
+			pig += n;
+		else if(name == "cow")
+			cow += n;
+	}
+
+	void print()
+	{
+		int most=max(chicken, max(pig, cow));
+		if(most==chicken){
+			cout << "chicken is the most: " << chicken << '\n';
+		}
+		else if(most==pig){
+			cout << "pig is the most: " << pig << '\n';
+		}
+		else{
+			cout << "cow is the most: " << cow << '\n';
+		}
+		// map<int, string> m;
+
+		// m[chicken] = "chicken";
+		// m[pig] = "pig";
+		// m[cow] = "cow";
+
+		// int maxn = max(chicken, max(pig, cow));
+
+		// cout << m[maxn] << " is the most: " << maxn << '\n';
+	}
+
+private:
+	int chicken;
+	int pig;
+	int cow;
+};
+
+int main()
+{
+	// #ifdef DBG
+	// freopen("input.in", "r", stdin);
+	// freopen("output.out", "w", stdout);
+	// #endif
+	//ios::sync_with_stdio(false);
+
+	int cas;
+	Animal animal;
+	scanf("%d", &cas);
+	for(int i=0; i<cas; i++)
+	{
+		string name;
+		int n;
+		cin >> name >> n;
+		animal.add(name, n);
+	}
+
+	animal.print();		
+
+	
+
+	exit(0);
+}
